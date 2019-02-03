@@ -1,37 +1,37 @@
 /* global log*/
 
+const Gettext        = imports.gettext.domain('gnome-shell-extension-mycroft');
 const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Config = imports.misc.config;
-const Clutter = imports.gi.Clutter;
-const Gettext = imports.gettext.domain('gnome-shell-extension-mycroft');
-const Gio = imports.gi.Gio;
-const Gtk = imports.gi.Gtk;
-const GLib = imports.gi.GLib;
-const Gvc = imports.gi.Gvc;
-const Lang = imports.lang;
-const Mainloop = imports.mainloop;
-const Soup = imports.gi.Soup;
-const St = imports.gi.St;
-const GnomeSession = imports.misc.gnomeSession;
-const Util = imports.misc.util;
-const Convenience = Me.imports.convenience;
-const Main = imports.ui.main;
-const PanelMenu = imports.ui.panelMenu;
-const PopupMenu = imports.ui.popupMenu;
-const Slider = imports.ui.slider;
-const Pango = imports.gi.Pango;
-const Tweener = imports.ui.tweener;
-const EXTENSIONDIR = Me.dir.get_path();
+const GnomeSession   = imports.misc.gnomeSession;
+const Config         = imports.misc.config;
+const Util           = imports.misc.util;
+const Clutter        = imports.gi.Clutter;
+const Gio            = imports.gi.Gio;
+const Gtk            = imports.gi.Gtk;
+const GLib           = imports.gi.GLib;
+const Gvc            = imports.gi.Gvc;
+const Soup           = imports.gi.Soup;
+const St             = imports.gi.St;
+const Pango          = imports.gi.Pango;
+const Main           = imports.ui.main;
+const PanelMenu      = imports.ui.panelMenu;
+const PopupMenu      = imports.ui.popupMenu;
+const Slider         = imports.ui.slider;
+const Tweener        = imports.ui.tweener;
+const Mainloop       = imports.mainloop;
+const Lang           = imports.lang;
+const Me             = ExtensionUtils.getCurrentExtension();
+const Convenience    = Me.imports.convenience;
+const EXTENSIONDIR   = Me.dir.get_path();
 
-const MYCROFT_SETTINGS_SCHEMA = 'org.gnome.shell.extensions.mycroft';
+const MYCROFT_SETTINGS_SCHEMA       = 'org.gnome.shell.extensions.mycroft';
 const MYCROFT_POSITION_IN_PANEL_KEY = 'position-in-panel';
-const MYCROFT_CORE_LOCATION_KEY = 'mycroft-core-location';
-const MYCROFT_IS_INSTALL_KEY = 'mycroft-is-install';
-const MYCROFT_INSTALL_TYPE_KEY = 'mycroft-install-type';
-const MYCROFT_IP_ADDRESS_KEY = 'mycroft-ip-address';
-const MYCROFT_PORT_NUMBER_KEY = 'mycroft-port-number';
-const MYCROFT_ANIMATION_STATUS_KEY = 'animation-status';
+const MYCROFT_CORE_LOCATION_KEY     = 'mycroft-core-location';
+const MYCROFT_IS_INSTALL_KEY        = 'mycroft-is-install';
+const MYCROFT_INSTALL_TYPE_KEY      = 'mycroft-install-type';
+const MYCROFT_IP_ADDRESS_KEY        = 'mycroft-ip-address';
+const MYCROFT_PORT_NUMBER_KEY       = 'mycroft-port-number';
+const MYCROFT_ANIMATION_STATUS_KEY  = 'animation-status';
 
 // let _httpSession;
 let _timeoutId,
@@ -46,8 +46,8 @@ let _timeoutId,
 
 const MycroftPosition = {
 	CENTER: 0,
-	RIGHT: 1,
-	LEFT: 2,
+	RIGHT : 1,
+	LEFT  : 2,
 };
 
 
@@ -69,11 +69,11 @@ const MycroftServiceManager = new Lang.Class({
 	_init: function() {
 		this.wsStarted = false;
 		this.loadConfig();
-		position_in_panel = this._position_in_panel;
-		core_location = this.core_location;
+		position_in_panel  = this._position_in_panel;
+		core_location      = this.core_location;
 		mycroft_is_install = this.mycroft_is_install;
-		install_type = this.install_type;
-		animation_status = this.animation_status;
+		install_type       = this.install_type;
+		animation_status   = this.animation_status;
 		this.setEventListeners();
 		if (mycroft_is_install) {
 			this.emitServiceStatus('install');
